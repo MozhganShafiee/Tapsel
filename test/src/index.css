@@ -1,0 +1,40 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.Carousel-root-1 {
+  width: 90%;
+  margin: auto;
+}
+.CarouselItem{
+  width: 85%;
+  margin: auto;
+}
+.Carousel-button-11{
+  margin:0 !important;
+}
+.cardLayout{
+  text-align:center;
+}
+.card{ 
+  width: 23%; 
+  margin: 0 1% 0 1%;
+}
+.card img{ 
+  width: 100%;
+  height: 250px;
+  border-radius: 5px
+}
+.card h3{
+  margin-top:0;
+}
