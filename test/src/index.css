@@ -38,3 +38,8 @@ code {
 .card h3{
   margin-top:0;
 }
+.title{
+  margin: 25px; 
+  margin-left: 5%; 
+  font-weight: bold;
+}

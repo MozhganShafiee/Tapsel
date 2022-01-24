@@ -4,6 +4,7 @@ import { Paper, Button, Grid } from "@mui/material";
 
 function Slider() {
   const [artWorks, setArtworks] = useState([]);
+  const [departments, setDepartments] = useState([]);
 
   //get number of objects which has details and set it in a state
   const makeCollection = async () => {
@@ -20,8 +21,17 @@ function Slider() {
     setArtworks(artWork);
   };
 
-  //fetch api while page loading
+  //fetch apis while page loading
   useEffect(() => {
+    //fetch depertments
+    fetch(
+      "https://collectionapi.metmuseum.org/public/collection/v1/departments"
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setDepartments(data.departments);
+      });
+
     makeCollection();
   }, []);
 
@@ -48,9 +58,16 @@ function Slider() {
   }
   return (
     <React.Fragment>
-      <Carousel autoPlay={false} navButtonsAlwaysVisible>
-        {items}
-      </Carousel>
+      {departments.map((department) => {
+        return (
+          <div key={department.departmentId}>
+            <div className="title">{department.displayName}</div>
+            <Carousel autoPlay={false} navButtonsAlwaysVisible>
+              {items}
+            </Carousel>
+          </div>
+        );
+      })}
     </React.Fragment>
   );
 }
