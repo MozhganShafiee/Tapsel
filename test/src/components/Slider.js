@@ -1,10 +1,24 @@
 import React, { useState, useEffect } from "react";
 import Carousel from "react-material-ui-carousel";
-import { Paper, Button, Grid } from "@mui/material";
+import { Paper, Button, Grid, Box, Modal } from "@mui/material";
 
 function Slider() {
   const [artWorks, setArtworks] = useState([]);
   const [departments, setDepartments] = useState([]);
+  const [detail, setDetail] = useState([]);
+  const [open, setOpen] = useState(false);
+
+  //modal openning & closing
+  const handleOpen = (e) => {
+    setOpen(true);
+    setDetail(e);
+  };
+  const handleClose = () => {
+    setOpen(false);
+    setDetail([]);
+  };
+  
+  
 
   //get number of objects which has details and set it in a state
   const makeCollection = async () => {
@@ -14,7 +28,7 @@ function Slider() {
         `https://collectionapi.metmuseum.org/public/collection/v1/objects/${i}`
       );
       await responses.json().then((data) => {
-        console.log(data);
+        // console.log(data);
         artWork.push(data);
       });
     }
@@ -35,7 +49,7 @@ function Slider() {
     makeCollection();
   }, []);
 
-  console.log(artWorks);
+  // console.log(artWorks);
 
   //make each slide for 4 arts
   let items = [];
@@ -49,7 +63,7 @@ function Slider() {
                 <img src={item.primaryImageSmall} />
                 <h3>{item.objectID}</h3>
               </Paper>
-              <Button>{item.title}</Button>
+              <Button className="modalButton" onClick={() => handleOpen(item)}>{item.title}</Button>
             </div>
           );
         })}
@@ -68,6 +82,40 @@ function Slider() {
           </div>
         );
       })}
+
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box className="detailBox">
+          <h2>More details...</h2>
+          <img src={detail.primaryImage} />
+          <div className="detailLayout">
+            <div className="detailRow">
+              <div className="detailCell">
+                <label>Country Name:</label>
+                <p>{detail.country}</p>
+              </div>
+              <div className="detailCell">
+                <label>Accession Name:</label>
+                <p>{detail.accessionNumber}</p>
+              </div>
+            </div>
+            <div className="detailRow">
+              <div className="detailCell">
+                <label>Credit Line:</label>
+                <p>{detail.creditLine}</p>
+              </div>
+              <div className="detailCell">
+                <label>Medium:</label>
+                <p>{detail.medium}</p>
+              </div>
+            </div>
+          </div>
+        </Box>
+      </Modal>
     </React.Fragment>
   );
 }

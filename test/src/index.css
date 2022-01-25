@@ -38,8 +38,63 @@ code {
 .card h3{
   margin-top:0;
 }
+.card .modalButton{
+  background: #494949;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+.card .modalButton:hover{ 
+  background: #49494975;
+}
 .title{
   margin: 25px; 
   margin-left: 5%; 
   font-weight: bold;
+}
+.detailBox{
+  position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 24;
+    padding:35px;
+}
+.detailBox img{
+  width: 100%;
+}
+.detailBox h2{
+  margin-top: 0;
+}
+.detailBox .detailLayout{
+  display:flex;
+  flex-direction:column;
+}
+.detailBox .detailLayout .detailRow{
+  display: flex;
+  justify-content:space-between
+}
+.detailBox .detailLayout .detailRow .detailCell{
+  flex-basis: 100%;
+}
+.detailLayout label{
+  font-size:13px;
+  font-weight:bold;
+}
+.detailLayout p{
+  margin-top:0;
+}
+@media (max-width: 560px){
+  .Carousel-root-1{
+    width:100%;
+  }
+  .card .modalButton{
+    font-size:0.7rem;
+  }
+  .detailBox{
+    width: 80%;
+  }
 }
